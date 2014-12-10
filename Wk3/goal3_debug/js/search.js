@@ -1,6 +1,6 @@
 /******************************************
-  Week 2 Assignment: Search Engine Debug
-  Joanna Hogan       05 DEC 14
+  Week 3 Assignment: Search Engine Debug
+  Joanna Hogan       10 DEC 14
 *******************************************/
 // Create privatized scope using a self-executing function
 (function(){   // Start of function
