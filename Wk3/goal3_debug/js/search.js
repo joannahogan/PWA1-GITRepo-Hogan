@@ -38,7 +38,7 @@
 	var search = function(query){  //fixed error: added curly brace  //declare variable search
 		
 		// split the user's search query string into an array
-		var queryArray = query.join(" ");   //join data from query
+		var queryArray = query.split(" ");   //split data from query  //fixed error: changed .join to .split
 		
 		// array to store matched results from database.js
 		var results = [];
@@ -49,12 +49,12 @@
             // each db[i] is a single video item, each title ends with a pipe "|"
             // save a lowercase variable of the video title
             var dbTitleEnd = db[i].indexOf('|');
-            var dbitem = db[i].tolowercase().substring(0, dbTitleEnd);
+            var dbitem = db[i].toLowerCase().substring(0, dbTitleEnd);  //fixed error: changed toLowerCase to camel case
 
             // loop through the user's search query words
             // save a lowercase variable of the search keyword
             for (var ii = 0, jj = queryArray.length; ii < jj; ii++) {
-                var qitem = queryArray[ii].tolowercase();
+                var qitem = queryArray[ii].toLowerCase();  //fixed error: changed toLowerCase to camel case
 
                 // is the keyword anywhere in the video title?
                 // If a match is found, push full db[i] into results array
@@ -68,7 +68,7 @@
 		results.sort();
 		
 		// Check that matches were found, and run output functions
-		if(results.length = 0){  //if else statement to show matches or "no results found"
+		if(results.length === 0){  //if else statement to show matches or "no results found"  //fixed error: changed = to ===
 			noMatch();
 		}else{
 			showMatches(results); //var showMatches called
@@ -99,7 +99,7 @@
 			// title of video ends with pipe
 			// pull the title's string using index numbers
 			titleEnd = results[i].indexOf('|');
-			title = results[i].subString(0, titleEnd);
+			title = results[i].substring(0, titleEnd);  //fixed error: .substring  no camel case
 			
 			// pull the video url after the title
 			url = results[i].substring(results[i].indexOf('|')+1, results[i].length);
