@@ -80,7 +80,7 @@
         var result = "no winner";  // Result is string "no winner"
         if (fighters[0].health < 1 && fighters[1].health < 1) // If statement for both players losing
         {
-            result = "You Both Died.";  // Both players losing results in string of "You both die"
+            result = "You Both Died - GAME OVER";  // Both players losing results in string of "You both die"
         } else if(fighters[0].health < 1){ // Else if statement if player 2 wins
             result = fighters[1].name + " WINS!!!"  // Result is Batman wins
         } else if (fighters[1].health < 1)  // Else if statement if player 1 wins
