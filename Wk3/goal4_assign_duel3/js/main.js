@@ -9,63 +9,85 @@
 
     console.log("FIGHT!!!");  // Display "Fight!!!" to console
 
+    //DOM variables
+    var fighter1_txt = document.querySelector("#sm").querySelector("p");
+    var fighter2_txt = document.querySelector("#bm").querySelector("p");
+    var round_txt = document.querySelector("h5");
+    var button = document.getElementById("fight_btn");
 
-    //Replace arrays with objects containing arrays
-    var playerOne = ["Spiderman", 20, 100];
-    var playerTwo = ["Batman", 20, 100];
-    var playerOne = {name:Spiderman, damage:20, health:100};
-    var playerTwo = {name:Batman, damage:20, health:100};
+    //Click Event
+    button.addEventListener("click", fight, false);
+
+    //Array of fighter objects
+    var fighters = [
+        {
+            name:"Spiderman",
+            damage:20,
+            health:100
+        },
+        {
+            name:"Batman",
+            damage:20,
+            health:100
+        }];
 
     //initiate round
-    var round=0;  // Declare variable round to equal zero
+    var round = 1;  // Declare variable round to equal zero
 
-    function fight(){
-        alert(playerOne.name+":"+playerOne.health+"  *START*  "+playerTwo.name+":"+playerTwo.health); // Display alert with names and starting health
-        for (var i = 0; i < 10; i++) // For loop with conditions
-        {
-            //random formula is - Math.floor(Math.random() * (max - min) + min);
-            var minDamage1 = playerOne.damage * .5; // Declare variable minDamage1 to be the result of the expression
-            var minDamage2 = playerTwo.damage * .5; // Declare variable minDamage2 to be the result of the expression
-            var f1 = Math.floor(Math.random()*(playerOne.damage-minDamage1)+minDamage1); // Calculate player 1 damage
-            var f2 = Math.floor(Math.random()*(playerTwo.damage-minDamage2)+minDamage2); // Calculate player 2 damage
+    //DOM innerHTML
+    round_txt.innerHTML = "Click FIGHT Button to Start!";
+    fighter1_txt.innerHTML = fighters[0].name + ": " + fighters[0].health;
+    fighter2_txt.innerHTML = fighters[1].name + ": " + fighters[1].health;
 
-            //inflict damage
-            playerOne[2]-=f1; // Decreases player 1 health by f1 calculation
-            playerTwo[2]-=f2;  // Decreases player 2 health by f2 calculation
+    function fight(){ //fight function
 
-            console.log(playerOne[0]+": "+playerOne[2] + " " + playerTwo[0]+":"+playerTwo[2]);  // Display to console player names and health status
+        fighter1_txt.innerHTML = fighters[0].name + ": " + fighters[0].health;
+        fighter2_txt.innerHTML = fighters[1].name + ": " + fighters[1].health;
 
-            //check for victor
+            var f1 = Math.floor(Math.random() * fighters[0].damage + fighters[0].damage *.5); // Calculate player 1 damage
+            var f2 = Math.floor(Math.random() * fighters[1].damage + fighters[1].damage *.5); // Calculate player 2 damage
+
+            //Inflict Damage
+            fighters[0].health -= f1; // Decreases player 1 health by f1 calculation
+            fighters[1].health -= f2;  // Decreases player 2 health by f2 calculation
+
+            console.log(fighters[0].health, fighters[1].health);  // Display to console player names and health status
+
+            //Winner Check
             var result = winnerCheck();  // Function winnerCheck calculates resuld
             console.log(result);  // Display result in console
-            if (result==="no winner")  // If statement to continue game if no winner
-            {
-                round++; // Round incrementally increased by one
-                alert(playerOne[0]+":"+playerOne[2]+"  *ROUND "+round+" OVER"+"*  "+playerTwo[0]+":"+playerTwo[2]); // Alert to user current health at the end of the round
 
-            } else{  // Else statement to alert user of winner and end game
-                alert(result);  // Alert to user the result
-                break; // Break out of the loop
+            round_txt.innerHTML = "Round #" + round + " Results:";
+            round++; // Round incrementally increased by one
+            if (result === "no winner")  // If statement to continue game if no winner
+            {
+                fighter1_txt.innerHTML = fighters[0].name + ": " + fighters[0].health;
+                fighter2_txt.innerHTML = fighters[1].name + ": " + fighters[1].health;
+
+            } else{
+                fighter1_txt.innerHTML = result;
+                fighter2_txt.innerHTML = "";
+
+                button.removeEventListener("click", fight, false);
+
+                document.querySelector('.buttonblue').innerHTML = "FINISHED!";
+
             };
 
-          };
     };
 
     function winnerCheck(){  // Function to calculate if there is a winner
-        var result="no winner";  // Result is string "no winner"
-        if (playerOne[2]<1 && playerTwo[2]<1) // If statement for both players losing
+        var result = "no winner";  // Result is string "no winner"
+        if (fighters[0].health < 1 && fighters[1].health < 1) // If statement for both players losing
         {
-            result = "You Both Die";  // Both players losing results in string of "You both die"
-        } else if(playerOne[2]<1){ // Else if statement if player 2 wins
-            result =playerTwo[0]+" WINS!!!"  // Result is Batman wins
-        } else if (playerTwo[2]<1)  // Else if statement if player 1 wins
+            result = "You Both Died.";  // Both players losing results in string of "You both die"
+        } else if(fighters[0].health < 1){ // Else if statement if player 2 wins
+            result = fighters[1].name + " WINS!!!"  // Result is Batman wins
+        } else if (fighters[1].health < 1)  // Else if statement if player 1 wins
         {
-            result = playerOne[0]+" WINS!!!"  // Result is Spiderman wins
+            result = fighters[0].name + " WINS!!!"  // Result is Spiderman wins
         };
        return result; // Return result to previous code
     };
-
-    /*******  The program gets started below *******/
-    fight();  // Call function fight
 
 })();
