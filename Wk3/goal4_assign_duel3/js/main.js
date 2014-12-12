@@ -1,6 +1,6 @@
 /******************************************
- Week 2 Assignment: Develop Duel #2
- Joanna Hogan       05 DEC 14
+ Week 3 Assignment: Develop Duel #3
+ Joanna Hogan       11 DEC 14
  *******************************************/
 
 
@@ -10,23 +10,24 @@
     console.log("FIGHT!!!");  // Display "Fight!!!" to console
 
 
-    //Replace variables for each player with an array declaring name, damage, & health
+    //Replace arrays with objects containing arrays
     var playerOne = ["Spiderman", 20, 100];
     var playerTwo = ["Batman", 20, 100];
-
+    var playerOne = {name:Spiderman, damage:20, health:100};
+    var playerTwo = {name:Batman, damage:20, health:100};
 
     //initiate round
     var round=0;  // Declare variable round to equal zero
 
     function fight(){
-        alert(playerOne[0]+":"+playerOne[2]+"  *START*  "+playerTwo[0]+":"+playerTwo[2]); // Display alert with names and starting health
+        alert(playerOne.name+":"+playerOne.health+"  *START*  "+playerTwo.name+":"+playerTwo.health); // Display alert with names and starting health
         for (var i = 0; i < 10; i++) // For loop with conditions
         {
             //random formula is - Math.floor(Math.random() * (max - min) + min);
-            var minDamage1 = playerOne[1] * .5; // Declare variable minDamage1 to be the result of the expression
-            var minDamage2 = playerTwo[1] * .5; // Declare variable minDamage2 to be the result of the expression
-            var f1 = Math.floor(Math.random()*(playerOne[1]-minDamage1)+minDamage1); // Calculate player 1 damage
-            var f2 = Math.floor(Math.random()*(playerTwo[1]-minDamage2)+minDamage2); // Calculate player 2 damage
+            var minDamage1 = playerOne.damage * .5; // Declare variable minDamage1 to be the result of the expression
+            var minDamage2 = playerTwo.damage * .5; // Declare variable minDamage2 to be the result of the expression
+            var f1 = Math.floor(Math.random()*(playerOne.damage-minDamage1)+minDamage1); // Calculate player 1 damage
+            var f2 = Math.floor(Math.random()*(playerTwo.damage-minDamage2)+minDamage2); // Calculate player 2 damage
 
             //inflict damage
             playerOne[2]-=f1; // Decreases player 1 health by f1 calculation
