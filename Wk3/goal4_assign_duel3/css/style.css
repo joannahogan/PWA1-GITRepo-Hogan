@@ -6,31 +6,24 @@ body{
 	background: url('../images/grey_wash_wall.png') repeat;
 }
 
+#mytitle{
+    font-size: 2em;
+    font-family: impact;
+    background-color: #00CCFF;
+}
+#round{
+    font-family: arial;
+    font-size: 1.25em;
+    background-color: #00CCFF;
+}
 #scores{
-	background: #fff;
 	width: 100%;
 	height: 100%;
+    background-color: #00CCFF;
+    font-size: 1.5em;
 }
 
-#kabal{
-	margin: 0px 0px 0px 15%;
-	float:left;
-}
 
-#kratos{
-	margin: 0px 0px 0px 40%;
-	float:left;
-}
-
-#kabal p{
-	font-family: arial;
-	font-size:  25px;
-}
-
-#kratos p{
-	font-family: arial;
-	font-size:  25px;
-}
 
 #fight_btn{
 	position: absolute;

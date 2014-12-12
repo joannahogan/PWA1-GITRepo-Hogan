@@ -10,8 +10,8 @@
     console.log("FIGHT!!!");  // Display "Fight!!!" to console
 
     //DOM variables
-    var fighter1_txt = document.querySelector("#sm").querySelector("p");
-    var fighter2_txt = document.querySelector("#bm").querySelector("p");
+    var fighter1_txt = document.querySelector("#bm").querySelector("p");
+    var fighter2_txt = document.querySelector("#rid").querySelector("p");
     var round_txt = document.querySelector("h5");
     var button = document.getElementById("fight_btn");
 
@@ -21,12 +21,12 @@
     //Array of fighter objects
     var fighters = [
         {
-            name:"Spiderman",
+            name:"Batman",
             damage:20,
             health:100
         },
         {
-            name:"Batman",
+            name:"Riddler",
             damage:20,
             health:100
         }];
